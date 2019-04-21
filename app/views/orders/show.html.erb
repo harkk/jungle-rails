@@ -5,12 +5,7 @@
   </header>
 
   <div class="order-summary jumbotron">
-    <h3>
-      Thank you for your order 
-        <% if current_user %>    
-          <%= current_user.name %>!
-        <% end %>
-    </h3>
+    <h3>Thank you for shopping at Jungle.com! <%= @order.email %></h3>
     <p>
       <% if current_user %>
       An email will be dispatched to <%= current_user.email %> shortly
