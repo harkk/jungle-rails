@@ -27,5 +27,26 @@
     </div>
 
   </article>
+  <% if session[:user_id] %>
 
+    <div>
+      <%= form_for [@product, @review] do |f| %>
+        Description: <%= f.text_area :description %><br />
+        Rating : <%= f.select :rating, (1..5) %><br />
+        <%= f.submit %>
+      <% end %>
+    </div>
+
+    <% end %>
+
+    <div class="panel panel-default items">
+      <h3>Reviews</h3>
+      <% @product.reviews.each do |review| %>
+        <div>
+          <p><%= review.description %></p>
+          <p><%= review.rating %></p>
+          <p><%= review.user.email %></p>
+        </div>
+      <% end %>
+    </div>
 </section>

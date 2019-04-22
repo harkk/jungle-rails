@@ -32,7 +32,7 @@ cat3 = Category.find_or_create_by! name: 'Furniture'
 ## PRODUCTS
 
 puts "Re-creating Products ..."
-
+LineItem.destroy_all
 Product.destroy_all
 
 cat1.products.create!({
@@ -55,7 +55,7 @@ cat1.products.create!({
   name:  'Hipster Hat',
   description: Faker::Hipster.paragraph(4),
   image: open_asset('apparel3.jpg'),
-  quantity: 0,
+  quantity: 4,
   price: 34.49
 })
 
@@ -128,9 +128,37 @@ cat3.products.create!({
   name:  'Red Bookshelf',
   description: Faker::Hipster.paragraph(4),
   image: open_asset('furniture3.jpg'),
-  quantity: 23,
+  quantity: 0,
   price: 2_483.75
 })
 
 
 puts "DONE!"
+
+
+puts "Creating Users..."
+
+User.destroy_all
+
+user1 = User.create!(name: 'Hark', email: 'test1@test.com', password: '123456')
+user2 = User.create!(name: 'Anja', email: 'test2@test.com', password: '123456')
+
+# REVIEWS
+
+puts "Creating Reviews ..."
+
+Review.destroy_all
+
+Review.create!({
+  product_id:  Product.first.id,
+  user_id: User.first.id,
+  description: "This is so great buy it",
+  rating: 4
+})
+
+Review.create!({
+  product_id:  Product.last.id,
+  user_id: User.last.id,
+  description: "Not too happy with it",
+  rating: 2
+})
