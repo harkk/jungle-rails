@@ -7,7 +7,7 @@ class ReviewsController < ApplicationController
     @review.user = current_user
 
     if @review.save
-      redirect_to product_path(@product_id)
+      redirect_to product_path(@product.id)
     else
       render 'products/show'
     end

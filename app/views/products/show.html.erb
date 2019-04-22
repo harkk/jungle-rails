@@ -14,39 +14,48 @@
 
       <div class="col-sm-8">
         <dl class="dl-horizontal">
-          <dt>Name</dt>
-          <dd><%= @product.name %></dd>
-          <dt>Description</dt>
-          <dd><%= @product.description %></dd>
-          <dt>Quantity</dt>
-          <dd><%= @product.quantity %></dd>
-          <dt>Price</dt>
-          <dd><%= @product.price %></dd>
+            <dt>Name</dt>
+            <dd><%= @product.name %></dd>
+            <dt>Description</dt>
+            <dd><%= @product.description %></dd>
+            <dt>Average Rating</dt>
+            <dd><%= @product.reviews.average(:rating) %>/5</dd>
+            <dt>Quantity</dt>
+            <dd><%= @product.quantity %></dd>
+            <dt>Price</dt>
+            <dd>$<%= @product.price %></dd>
         </dl>
       </div>
     </div>
-
-  </article>
-  <% if session[:user_id] %>
-
-    <div>
-      <%= form_for [@product, @review] do |f| %>
-        Description: <%= f.text_area :description %><br />
-        Rating : <%= f.select :rating, (1..5) %><br />
-        <%= f.submit %>
-      <% end %>
-    </div>
-
-    <% end %>
-
-    <div class="panel panel-default items">
-      <h3>Reviews</h3>
-      <% @product.reviews.each do |review| %>
-        <div>
-          <p><%= review.description %></p>
-          <p><%= review.rating %></p>
-          <p><%= review.user.email %></p>
+    <div class="row justify-content-end">
+      <div class="col-sm-8 review-container">
+      <h2>Reviews</h2>
+        <% if current_user %>
+        <div class= "form-group">
+          <%= form_for [@product, Review.new] do |f| %>
+            rating <%= f.select :rating, (1..5), {}, class: 'form-control' %>
+            comment <%= f.text_area :description, class: 'form-control' %>
+            <%= f.submit 'Post', class: 'btn btn-primary' %>
+          <% end %>
         </div>
-      <% end %>
+        <% end %>
+        <dl class="dl-horizontal">
+          <% @product.reviews.reverse.each do |item| %>
+            <dt>Name</dt>
+            <dd><%= item.user.name %></dd>
+            <dt>Rating</dt>
+            <dd><%= item.rating %>/5</dd>
+            <dt>Comment</dt>
+            <dd><%= item.description %></dd>
+            <% if current_user && item.user.id == current_user.id %>
+            <dd>
+              <%= button_to 'Delete',  [item.product, item], method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-xs btn-danger' %>
+            </dd>
+            <% end %>
+            <br>
+          <% end %>    
+        </dl>
+      </div>
     </div>
+  </article>
 </section>
