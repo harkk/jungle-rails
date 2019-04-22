@@ -55,7 +55,7 @@ cat1.products.create!({
   name:  'Hipster Hat',
   description: Faker::Hipster.paragraph(4),
   image: open_asset('apparel3.jpg'),
-  quantity: 4,
+  quantity: 0,
   price: 34.49
 })
 
@@ -96,7 +96,7 @@ cat2.products.create!({
   name:  'Hotdog Slicer',
   description: Faker::Hipster.paragraph(4),
   image: open_asset('electronics2.jpg'),
-  quantity: 3,
+  quantity: 0,
   price: 26.00
 })
 
@@ -128,7 +128,7 @@ cat3.products.create!({
   name:  'Red Bookshelf',
   description: Faker::Hipster.paragraph(4),
   image: open_asset('furniture3.jpg'),
-  quantity: 0,
+  quantity: 97,
   price: 2_483.75
 })
 
@@ -152,13 +152,13 @@ Review.destroy_all
 Review.create!({
   product_id:  Product.first.id,
   user_id: User.first.id,
-  description: "This is so great buy it",
-  rating: 4
+  description: "This is pretty great",
+  rating: 5
 })
 
 Review.create!({
   product_id:  Product.last.id,
   user_id: User.last.id,
-  description: "Not too happy with it",
-  rating: 2
+  description: "Not too good",
+  rating: 1
 })
