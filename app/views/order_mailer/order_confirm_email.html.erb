@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Thanks for your purchase at Jungle.com!
+    Your order ID is: <% @order.id %></h1>
+    <p>
+      Your order has successfully been processed,
+
+      The total amount is: <%= @order.total_cents / 100.0 %>.<br>
+    </p>
+    <p>
+      You can find the complete details of your order at: <%= url %>.
+    </p>
+    <p>Thanks for shopping with Jungle.com!</p>
+  </body>
+</html>
