@@ -26,3 +26,14 @@ More information in their docs: <https://stripe.com/docs/testing#cards>
 * Rails 4.2 [Rails Guide](http://guides.rubyonrails.org/v4.2/)
 * PostgreSQL 9.x
 * Stripe
+* bcrypt
+
+## Final Product
+The Jungle Home Page
+!["Jungle home page"](https://github.com/harkk/jungle-rails/blob/master/docs/Jungle_home.png?raw=true)
+
+Register Page
+!["Register page"](https://github.com/harkk/jungle-rails/blob/master/docs/Jungle_register.png?raw=true)
+
+Cart
+!["Shopping cart"](https://github.com/harkk/jungle-rails/blob/master/docs/Jungle_cart.png?raw=true)
