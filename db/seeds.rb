@@ -140,8 +140,8 @@ puts "Creating Users..."
 
 User.destroy_all
 
-user1 = User.create!(name: 'Hark', email: 'test1@test.com', password: '123456')
-user2 = User.create!(name: 'Anja', email: 'test2@test.com', password: '123456')
+user1 = User.create!(first_name: 'Hark', last_name: 'Test', email: 'test1@test.com', password: '123456')
+user2 = User.create!(first_name: 'Anja', last_name: 'Test', email: 'test2@test.com', password: '123456')
 
 # REVIEWS
 

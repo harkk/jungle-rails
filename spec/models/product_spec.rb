@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Product, type: :model do
   describe 'Validations' do
     subject {
-    Product.new(name: "Hot Wheels E30 Model Car", price_cents: 900, quantity: 3, category: Category.new(name: "Toys"))
+    Product.new(name: "Hot Wheels E30", price: 800, quantity: 3, category: Category.new(name: "Toys"))
   }
     it 'is valid with valid attributes' do
       expect(subject).to be_valid
