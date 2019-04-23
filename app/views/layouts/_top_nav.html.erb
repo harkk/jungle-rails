@@ -30,7 +30,7 @@
         
         <% if current_user %>
           <li>
-            <p class="navbar-text">Signed in as <%= current_user.name %></p>
+            <p class="navbar-text">Signed in as <%= current_user.email %></p>
           </li>
           <li>
             <%= link_to "Logout", '/logout' %>
