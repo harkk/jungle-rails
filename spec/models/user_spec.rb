@@ -1,23 +1,56 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  describe 'Validations' do
-    subject {
-      User.new(first_name: "Tester", last_name: 'Test', email: "tester@tested.com", password: "12345678", password_confirmation: "12345678")
-    }
+  
+  subject { User.new(
+                      first_name: "Timmy",
+                      last_name: "Tester",
+                      email: "Timmy@tester.com",
+                      password: "password",
+                      password_confirmation: "password"
+                      )
+  }
+  
+  describe 'User Validations' do
 
-    it 'is not valid when password confirmation does not match password' do
-      subject.password_confirmation = "22222"
+    it 'is not valid without password confirmation' do
+      subject.password_confirmation = "boguspassword"
       expect(subject).to_not be_valid
     end
 
-    it 'is not valid when email already used' do
-      test1 = User.new(first_name: "Timmy", last_name: 'Tester', email: "tester@tested.com", password: "12345678", password_confirmation: "12345678")
-      test1.save
-      subject.email = "tester@tested.com"
+    it 'is not valid without a first name' do
+      subject.first_name = nil
       expect(subject).to_not be_valid
-      puts subject.errors.full_messages
     end
 
+    it 'is not valid without a last name' do
+      subject.last_name = nil
+      expect(subject).to_not be_valid
+    end
+    
+    it 'is not valid without an email' do
+      subject.email = nil
+      expect(subject).to_not be_valid
+    end
+
+    it 'is valid with valid attributes' do
+      expect(subject).to be_valid
+    end
+
+    it 'is not valid when password is under 6 characters' do
+      subject.password = "pass"
+      expect(subject).to_not be_valid
+    end
+
+    it 'is not valid when emails has been taken (not case sensitive)' do
+      new_user = User.create(
+                          first_name: "Timmy", 
+                          last_name: "Tester",
+                          email: "timmY@tester.com", 
+                          password: "password", 
+                          password_confirmation: "password"
+                          )
+      expect(subject).to_not be_valid
+    end
   end
 end
